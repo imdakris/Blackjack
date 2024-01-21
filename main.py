@@ -66,3 +66,14 @@ class Game:
         self.player.hand = self.cards.get_card()
         self.player.hand = self.cards.get_card()
         print(self.player.hand)
+
+
+def main() -> None:
+    """Starts the game"""
+    name = input("Your name?: ")
+    game = Game(name)
+    game.start()
+
+
+if __name__ == "__main__":
+    main()
