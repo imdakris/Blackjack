@@ -1,4 +1,5 @@
 """Writing a card game using classes"""
+import random
 
 
 class Card:
@@ -18,3 +19,18 @@ class Card:
     def get_rank(self):
         """Displays playing card information"""
         return f"{self.suit}{self.rank}"
+
+
+class DeskCard:
+    """Creates a deck of playing cards"""
+
+    def __init__(self) -> None:
+        _rank = "A23456789AJQK"
+        _suit = "CDHS"  # clubs (♣), diamonds (♦), hearts (♥), spades (♠)
+        self.__cards = [Card(r, s) for s in _suit for r in _rank]
+        random.shuffle(self.__cards)
+    
+    def get_card(self)-> Card:
+        '''To distribute playing cards'''
+        return self.__cards.pop()
+    
