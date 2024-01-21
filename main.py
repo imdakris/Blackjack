@@ -66,6 +66,11 @@ class Game:
         self.player.hand = self.cards.get_card()
         self.player.hand = self.cards.get_card()
         print(self.player.hand)
+        while self.player.count < 21:
+            answer = input('Card? y/n: ')
+            if answer == 'y':
+                self.player.hand = self.cards.get_card()
+                print(self.player.hand)
 
 
 def main() -> None:
