@@ -58,7 +58,7 @@ class Dealer(Player):
     """Creates a dealer"""
 
     def get_cards(self, cards: DeskCard):
-        '''Rule'''
+        """Rule"""
         while self.count < 18:
             self.hand = cards.get_card()
 
@@ -86,8 +86,25 @@ class Game:
             elif answer == "n":
                 self.dealer.get_cards(self.cards)
                 break
-        print(self.player.hand)
-        print(self.dealer.hand)
+        self.check_count()
+
+    def print(self) -> str:
+        """Print"""
+        return f"\n{self.player.name}:\n{self.player.hand}\n{self.dealer.name}:\n{self.dealer.hand}"
+
+    def check_count(self) -> None:
+        """Determines the winner of the game"""
+        if self.player.count > 21:
+            print("You lose", self.print())
+        elif self.dealer.count > 21 and self.player.count <= 21:
+            print("You won!!!", self.print())
+        elif self.dealer.count == self.player.count:
+            print("Draw...", self.print())
+        elif self.dealer.count > self.player.count:
+            print("You lose", self.print())
+        elif self.dealer.count < self.player.count:
+            print("You won!!!", self.print())
+
 
 def main() -> None:
     """Starts the game"""
