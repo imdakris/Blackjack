@@ -16,7 +16,7 @@ class Card:
         else:
             return " A23456789".index(self.rank)
 
-    def get_rank(self):
+    def get_rank(self) -> str:
         """Displays playing card information"""
         return f"{self.suit}{self.rank}"
 
@@ -29,8 +29,20 @@ class DeskCard:
         _suit = "CDHS"  # clubs (♣), diamonds (♦), hearts (♥), spades (♠)
         self.__cards = [Card(r, s) for s in _suit for r in _rank]
         random.shuffle(self.__cards)
-    
-    def get_card(self)-> Card:
-        '''To distribute playing cards'''
+
+    def get_card(self) -> Card:
+        """To distribute playing cards"""
         return self.__cards.pop()
-    
+
+
+class Player:
+    """Creates and describes a player"""
+
+    def __init__(self, name: str) -> None:
+        self._hand = []
+        self.count = 0
+        self.name = name
+
+    def hand(self):
+        """Informs the player about his cards and points"""
+        return f"Playing cards in hand: {self._hand}; Points you have:{self.count}"
