@@ -54,24 +54,40 @@ class Player:
         self._hand.append(card.get_rank())
 
 
+class Dealer(Player):
+    """Creates a dealer"""
+
+    def get_cards(self, cards: DeskCard):
+        '''Rule'''
+        while self.count < 18:
+            self.hand = cards.get_card()
+
+
 class Game:
     """Describes the game process"""
 
     def __init__(self, player_name: str) -> None:
         self.cards = DeskCard()
         self.player = Player(name=player_name)
+        self.dealer = Dealer(name="Dealer")
 
     def start(self) -> None:
         """We give 2 cards to the player and display information about his cards"""
         self.player.hand = self.cards.get_card()
         self.player.hand = self.cards.get_card()
+        self.dealer.hand = self.cards.get_card()
+        self.dealer.hand = self.cards.get_card()
         print(self.player.hand)
         while self.player.count < 21:
-            answer = input('Card? y/n: ')
-            if answer == 'y':
+            answer = input("Card? y/n: ")
+            if answer == "y":
                 self.player.hand = self.cards.get_card()
                 print(self.player.hand)
-
+            elif answer == "n":
+                self.dealer.get_cards(self.cards)
+                break
+        print(self.player.hand)
+        print(self.dealer.hand)
 
 def main() -> None:
     """Starts the game"""
