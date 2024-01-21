@@ -44,12 +44,25 @@ class Player:
         self.name = name
 
     @property
-    def hand(self):
+    def hand(self) -> str:
         """Informs the player about his cards and points"""
         return f"Playing cards in hand: {self._hand}; Points you have:{self.count}"
-    
+
     @hand.setter
-    def hand(self, card: Card):
+    def hand(self, card: Card) -> None:
         self.count += card.get_value()
         self._hand.append(card.get_rank())
-        
+
+
+class Game:
+    """Describes the game process"""
+
+    def __init__(self, player_name: str) -> None:
+        self.cards = DeskCard()
+        self.player = Player(name=player_name)
+
+    def start(self) -> None:
+        """We give 2 cards to the player and display information about his cards"""
+        self.player.hand = self.cards.get_card()
+        self.player.hand = self.cards.get_card()
+        print(self.player.hand)
