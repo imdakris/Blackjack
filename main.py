@@ -43,6 +43,13 @@ class Player:
         self.count = 0
         self.name = name
 
+    @property
     def hand(self):
         """Informs the player about his cards and points"""
         return f"Playing cards in hand: {self._hand}; Points you have:{self.count}"
+    
+    @hand.setter
+    def hand(self, card: Card):
+        self.count += card.get_value()
+        self._hand.append(card.get_rank())
+        
